@@ -9,12 +9,12 @@ class PartsSumsTest < Minitest::Test
   end
 end
 
-def parts_sums(ls)
+def parts_sums(ls = [])
   @sums ||= []
+
   return (@sums, @sums = @sums << 0, nil)[0] if ls.count == 0
 
   @sums << ls.sum
-  ls.delete(ls[0])
 
-  parts_sums(ls)
+  parts_sums(ls.drop(1))
 end
