@@ -10,11 +10,13 @@ class PartsSumsTest < Minitest::Test
 end
 
 def parts_sums(ls = [])
-  @sums ||= []
+  @iteration ||= 0
 
-  return (@sums, @sums = @sums << 0, nil)[0] if ls.count == 0
+  return (ls, @iteration = ls << 0, nil)[0] if ls.count == @iteration
 
-  @sums << ls.sum
+  ls[@iteration] = ls[@iteration..-1].sum
 
-  parts_sums(ls.drop(1))
+  @iteration += 1
+
+  parts_sums(ls)
 end
